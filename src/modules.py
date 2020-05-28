@@ -140,8 +140,10 @@ class EP(object):
 
     def detect_signal_by_mean(self):
         estimated_signal = []
+        print("mu", self.mu)
         for mu in self.mu:
             obj_list  = np.abs(mu - np.array(self.constellation))
+            
             estimated_signal.append(self.constellation[np.argmin(obj_list)])
         return estimated_signal
 

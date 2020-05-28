@@ -57,8 +57,8 @@ class alphaGraph(Graph):
         # Look up RVs if needed.
         for i in range(len(rvs)):
             if debug:
-                assert type(rvs[i]) in [str, unicode, RV]
-            if type(rvs[i]) in [str, unicode]:
+                assert type(rvs[i]) in [bytes, str, RV]
+            if type(rvs[i]) in [bytes, str]:
                 rvs[i] = self._rvs[rvs[i]]
             # This is just a coding sanity check.
             assert type(rvs[i]) is RV
@@ -115,7 +115,7 @@ class Factor(bpFactor):
 
         # Divide out individual belief and (Sum:) add for marginal.
         convg = True
-        all_idx = range(len(belief.shape))
+        all_idx = list(range(len(belief.shape)))
         for i, rv in enumerate(self._rvs):
             # get the outgoing message from this fact to rv
 
